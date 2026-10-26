@@ -52,7 +52,13 @@ async function apiRequest(method, path, body) {
 const api = {
   login: (body) => apiRequest('POST', '/api/auth/login', body),
   logout: () => apiRequest('POST', '/api/auth/logout'),
-  perfil: () => apiRequest('GET', '/api/perfil')
+  perfil: () => apiRequest('GET', '/api/perfil'),
+  alumnos: () => apiRequest('GET', '/api/alumnos'),
+  clasesMias: () => apiRequest('GET', '/api/clases/mias'),
+  crearClase: (body) => apiRequest('POST', '/api/clases', body),
+  eliminarClase: (id) => apiRequest('DELETE', `/api/clases/${id}`),
+  agregarAlumno: (id, alumnoId) => apiRequest('POST', `/api/clases/${id}/alumnos`, { alumnoId }),
+  quitarAlumno: (id, alumnoId) => apiRequest('DELETE', `/api/clases/${id}/alumnos/${alumnoId}`)
 };
 
 if (CONFIG.USE_MOCK) {
